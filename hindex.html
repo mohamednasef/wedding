@@ -1,0 +1,173 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+      <title>Eid Al-Adhaa Beetlaware </title>
+       <style>
+
+
+/* 
+@font-face {
+  font-family: 'din-Next-regular';
+  src: url("fonts/DinNextLTW32-r.eot"), url("fonts/DinNextLTW32-r.woff2") format("woff2"), url("fonts/DinNextLTW32-r.woff") format("woff"), url("fonts/DinNextLTW32-r.ttf") format("truetype");
+} */
+  /* Safari, Android, iOS */
+
+/* @font-face {
+  font-family: 'din-Next-medium';
+  src: url("fonts/DinNextLTW32-m.eot"), url("fonts/DinNextLTW32-m.woff2") format("woff2"), url("fonts/DinNextLTW32-m.woff") format("woff"), url("fonts/DinNextLTW32-m.ttf") format("truetype");
+} */
+  /* Safari, Android, iOS */
+  @import url('https://fonts.googleapis.com/css2?family=Marhey:wght@400;500;600&display=swap');
+
+
+@font-face {
+    /* font-family: 'Frutiger';
+    src: url('fonts/FrutigerLTArabic-55Roman.woff2') format('woff2'),
+        url('fonts/FrutigerLTArabic-55Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; */
+}
+
+body{
+  /* font-family: 'Frutiger' !important; */
+  font-family: 'Marhey', cursive !important;
+
+  background: #eee;
+  background: url(./images/ramadan_temp.png) no-repeat;
+  background-position:   top center;
+  background-size: cover;
+
+
+}
+
+#name{
+font-family: 'Marhey', cursive !important;
+}
+.inputText{
+    padding:10px;
+    border: 1px solid #ccc;
+    color:#666;
+    width: 300px;
+    /* font-family: 'Frutiger'; */
+    font-family: 'Marhey', cursive !important;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px; 
+    border-radius: 4px;
+}
+.btn,.btn-download{
+  cursor: pointer;
+    padding: 11px 25px;
+    background: #009688;
+    color:#FFF;
+    border:0;
+    border-radius: 4px;
+    font-size: 16px;
+    /* font-family: 'Frutiger'; */
+    font-family: 'Marhey', cursive !important;
+    display: block;
+    margin: auto;
+    transition: .35s;
+}
+.btn-download{
+  background-color: #e59256;  
+  cursor: pointer;
+}
+.btn:hover,.btn-download:hover{
+  background-color: #8baa99;
+}
+ .addName{
+    position: absolute;
+    top: 665px;
+    width: 300px;
+  text-align: center;
+}
+.btn-download2{
+  background: #0B376D;
+}
+.item-bton{
+  display: flex;
+  align-items: center;
+  width: 320px;
+    margin: 20px auto;
+}
+
+      </style> 
+  </head>
+  <body>
+
+    <div class="addName">
+        <input type="text" id="name" class="inputText" placeholder="الاسم">
+        <input type="text" id="title" class="inputText" placeholder="المسمى الوظيفي">
+        <button class="btn">اضافة </button>
+    </div>
+    <div style="text-align: center;"><img src="./images/ramadan_temp.png"></div>
+    <div style="text-align: center; margin: auto;"><canvas id="myCanvas" width="1080" height="1580" style="display: none;  margin: 0 auto 10px ;"></canvas></div>
+    <div class="item-bton">
+      <button onclick="download_image()" class="btn-download" style="display: none;">تنزيل الصورة </button>
+      <button onclick="location.reload()" class="btn-download btn-download2" style="display: none;">انشاء صورة اخرى </button>
+  </div>
+
+
+    <!-- <div>
+        <a href="#" class="button" id="btn-download">Download</a>
+    </div> -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".addName").css("left",($(window).width() - $("#name").width())/2 +"px")
+})
+
+var myName =""; 
+
+var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var imageObj = new Image();
+$(".btn").on("click",function(){
+    $("#myCanvas").css("display","block")
+    myName = document.getElementById('name').value; 
+    myTitle = document.getElementById('title').value; 
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 0, 0);
+
+        context.textAlign = "center";
+            
+        context.font = "30pt Marhey"; 
+        context.fillStyle = "#000";
+        context.fillText(myName, 500 /2, 300);
+
+        context.font = "50pt Marhey"; 
+        context.fillStyle = "#000";
+        context.fillText(myTitle, 500 /2, 380);
+      };
+      imageObj.src = './images/ramadan_temp.png';
+      $(".addName, img").remove();
+      $(".btn-download").css("display","block")
+})
+
+function download_image(){
+  var canvas = document.getElementById("myCanvas");
+  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "Ramadan.jpg";
+  link.href = image;
+  link.click();
+}
+
+// var button = document.getElementById('btn-download');
+// button.addEventListener('click', function (e) {
+//     var dataURL = canvas.toDataURL('image/png');
+//     button.href = dataURL;
+// });
+
+
+</script>
+
+  </body>
+</html> 
